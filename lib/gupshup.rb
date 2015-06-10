@@ -51,9 +51,10 @@ module Gupshup
           puts "API call '#{opts[:method]}' failed: #{resp}"
           return false, resp
         end
+
         return true, nil
       else
-        return false, "HTTP Error : #{res}"
+        raise "HTTP Error: #{res}"
       end
     end
 
@@ -64,11 +65,10 @@ module Gupshup
 
       number = number.gsub('+','') if number.include? '+'
       
-      return false, 'Phone Number is too short' if number.to_s.length < 12
-      return false, 'Phone Number is too long' if number.to_s.length > 12
-      return false, 'Phone Number should start with "91"' if number.to_s.start_with? "91"
-      return false, 'Phone Number should be numerical value' unless number.to_i.to_s == number.to_s
-      return false, 'Message should be less than 725 characters long' if msg.to_s.length > 724
+      raise "[#{number}] - Phone number is too short" if number.to_s.length < 12
+      raise "[#{number}] - Phone number is too long" if number.to_s.length > 12
+      raise "[#{number}] - Phone number should be numerical value" unless number.to_i.to_s == number.to_s
+      raise 'Message should be less than 725 characters long' if msg.to_s.length > 724
 
       call_api opts.merge({ :method => 'sendMessage' })
     end
