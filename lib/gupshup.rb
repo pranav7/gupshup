@@ -19,7 +19,7 @@ class String
 end
 
 module Gupshup
-  VERSION = '0.2.3'
+  VERSION = '0.3.0'
 
   class Enterprise
     def initialize(opts)
