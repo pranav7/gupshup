@@ -19,7 +19,7 @@ class String
 end
 
 module Gupshup
-  VERSION = '0.2.1'
+  VERSION = '0.2.2'
   class Enterprise
     def initialize(opts)
       @api_url = opts[:api_url] || 'http://enterprise.smsgupshup.com/GatewayAPI/rest'
