@@ -19,7 +19,8 @@ class String
 end
 
 module Gupshup
-  VERSION = '0.2.2'
+  VERSION = '0.2.3'
+
   class Enterprise
     def initialize(opts)
       @api_url = opts[:api_url] || 'http://enterprise.smsgupshup.com/GatewayAPI/rest'
@@ -61,7 +62,7 @@ module Gupshup
       number = opts[:send_to]
       msg_type = opts[:msg_type] || 'TEXT'
 
-      number.gsub('+','') if number.include? '+'
+      number = number.gsub('+','') if number.include? '+'
       
       return false, 'Phone Number is too short' if number.to_s.length < 12
       return false, 'Phone Number is too long' if number.to_s.length > 12
